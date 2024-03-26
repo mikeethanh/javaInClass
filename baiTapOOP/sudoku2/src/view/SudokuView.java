@@ -31,46 +31,43 @@ public class SudokuView {
             char choice;
 
             while (true) {
-                System.out.print("Nhập hàng (1-9) (-1 để kết thúc, 'S' để lưu trò chơi): ");
+                System.out.print("Nhap hang tu 1-9 (-1 de ket thuc, 'S' de ket thuc): ");
                 choice = scanner.next().charAt(0);
                 if (choice == 'S' || choice == 's') {
-                    System.out.print("Da duoc luu");
                     String filename = "E:\\theFourSemester\\JavaInCLass\\file\\sudoku_save.txt";
                     saveGameToFile(filename);
-                    continue;
+                    break;
                 }
 
                 row = Character.getNumericValue(choice);
 
                 if (row == -1) break;
 
-                System.out.print("Nhập cột (1-9): ");
+                System.out.print("Nhap cot tu 1-9: ");
                 column = scanner.nextInt();
 
-                // Kiểm tra điều kiện của hàng và cột
+                // Kiem tra dieu kiem hang va cot
                 if (row < 1 || row > 9 || column < 1 || column > 9) {
-                    throw new IllegalArgumentException("Hàng hoặc cột không hợp lệ.");
+                    throw new IllegalArgumentException("Hang hoac cot khong hop le.");
                 }
 
                 row--;
                 column--;
 
                 if (game.getValue(row, column) != 0) {
-                    throw new IllegalArgumentException("Ô đã có giá trị.");
+                    throw new IllegalArgumentException("O da co gia tri.");
                 }
 
-                System.out.print("Nhập giá trị: ");
+                System.out.print("Nhap gia tri: ");
                 value = scanner.nextInt();
 
                 if (value < 1 || value > 9) {
-                    throw new IllegalArgumentException("Giá trị không hợp lệ.");
+                    throw new IllegalArgumentException("Gia tri khong hop le.");
                 }
 
                 game.setValue(row, column, value);
                 displayAfterInput();
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Dữ liệu nhập không hợp lệ. Vui lòng nhập lại.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " Vui lòng nhập lại.");
         } finally {
@@ -81,9 +78,9 @@ public class SudokuView {
     public void saveGameToFile(String filename) {
         try {
             game.saveGameToFile(filename);
-            System.out.println("Trò chơi đã được lưu vào tập tin " + filename);
+            System.out.println("Tro choi da duoc luu vao tep tin " + filename);
         } catch (IOException e) {
-            System.out.println("Đã xảy ra lỗi khi lưu trò chơi vào tập tin.");
+            System.out.println("Da xay ra loi khi luu vao tep tin.");
             e.printStackTrace();
         }
     }

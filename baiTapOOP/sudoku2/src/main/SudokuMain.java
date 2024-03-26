@@ -8,22 +8,22 @@ import view.SudokuView;
 
 public class SudokuMain {
     public static void main(String[] args) {
-        // Tạo trò chơi Sudoku từ tập tin dữ liệu
+        //Tep tin luu tro choi
         String filename = "E:\\theFourSemester\\JavaInCLass\\file\\sudoku.txt"; // Thay đổi tên tập tin theo tên thực tế
         Game sudokuGame = new Game();
         SudokuView sudokuView = new SudokuView(sudokuGame);
         SudokuController sudokuController = new SudokuController(sudokuGame, sudokuView);
 
-        // Tạo trò chơi mới từ tập tin dữ liệu
         try {
+        	// Tao tro choi tu tep tin
             sudokuGame.createNewGameFromFile(filename);
         } catch (IOException e) {
-            System.out.println("Đã xảy ra lỗi khi tạo trò chơi từ tập tin.");
+            System.out.println("Da xay ra loi khi tao tro choi.");
             e.printStackTrace();
             return;
         }
 
-        // Bắt đầu trò chơi
+        // Bat dau tro choi
         sudokuController.startGame();
     }
 }

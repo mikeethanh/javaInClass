@@ -22,7 +22,7 @@ public class SudokuController {
 
             // Validate toan bo Sudoku board
             if (gameIsComplete()) {
-                System.out.println("Chúc mừng, bạn đã hoàn thành Sudoku!");
+                System.out.println("Chuc mung , ban da hoan thanh suduko!");
                 return;
             }
             gameIsComplete();
@@ -33,7 +33,7 @@ public class SudokuController {
     private boolean gameIsComplete() {
         //       
             if (!game.validate()) {
-                System.out.println("Sudoku không hợp lệ. Vui lòng kiểm tra lại.");
+                System.out.println("suduko k hop le.");
                 return false;
             }
         return true;

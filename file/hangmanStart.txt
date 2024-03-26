@@ -1,0 +1,3 @@
+level: 1 word:hangman
+level: 2 word:i love hangman
+level: 3 word:i love hangman and sudoku

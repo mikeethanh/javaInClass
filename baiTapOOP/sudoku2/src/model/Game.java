@@ -12,33 +12,42 @@ public class Game {
 	public Game() {
 		board = new int[SIZE][SIZE];	
 	}
+	
+	//tao game tu file
     public void createNewGameFromFile(String filename) throws IOException {
-        FileReader fileReader = new FileReader(filename);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line;
-        int row = 0;
-        while ((line = bufferedReader.readLine()) != null && row < SIZE) {
-            String[] values = line.split("");
-            for (int col = 0; col < SIZE; col++) {
-                board[row][col] = Integer.parseInt(values[col]);
+        FileReader fr = null; 
+        BufferedReader br =null; 
+        try {
+        	fr = new FileReader(filename);
+        	br = new BufferedReader(fr);
+        	String line;
+            int row = 0;
+            while ((line = br.readLine()) != null && row < SIZE) {
+                String[] values = line.split("");
+                for (int col = 0; col < SIZE; col++) {
+                    board[row][col] = Integer.parseInt(values[col]);
+                }
+                row++;
             }
-            row++;
-        }
-        bufferedReader.close();
-        fileReader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			br.close();
+	        fr.close();
+		}     
     }
 
     public void saveGameToFile(String filename) throws IOException {
-        FileWriter fileWriter = new FileWriter(filename);
+        FileWriter fw = new FileWriter(filename);
         for (int i = 0; i < SIZE; i++) {
             StringBuilder line = new StringBuilder();
             for (int j = 0; j < SIZE; j++) {
                 line.append(board[i][j]);
             }
-            fileWriter.write(line.toString());
-            fileWriter.write("\n");
+            fw.write(line.toString());
+            fw.write("\n");
         }
-        fileWriter.close();
+        fw.close();
     }
     
 	public boolean validateRow(int row) {
@@ -66,7 +75,7 @@ public class Game {
                 seen[value] = true;
             }
         }
-        return true;
+        return false;
     }
 	
     public boolean validateZone(int zone) {
@@ -85,7 +94,7 @@ public class Game {
                 }
             }
         }
-        return true;
+        return false;
     }
 	
 	public boolean validate() {
@@ -110,7 +119,7 @@ public class Game {
             }
         }
 
-        return true; 
+        return false; 
 	}
 	
 	//check xemm o da co gia tri chua

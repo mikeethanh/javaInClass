@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class SudokuView {
     }
 
     public void displayBoard() {
-        System.out.println("Bảng Sudoku:");
+        System.out.println("Bang Sudoku:");
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 System.out.print(game.getValue(i, j) + " ");
@@ -26,20 +27,33 @@ public class SudokuView {
 
     public void getInput() {
         try {
-            System.out.println("Nhập giá trị cho các ô có giá trị là 0 trong Sudoku (Nhập -1 để kết thúc):");
             int row, column, value;
+            char choice;
 
             while (true) {
-                System.out.print("Nhập hàng (0-8) (-1 để kết thúc): ");
-                row = scanner.nextInt();
+                System.out.print("Nhập hàng (1-9) (-1 để kết thúc, 'S' để lưu trò chơi): ");
+                choice = scanner.next().charAt(0);
+                if (choice == 'S' || choice == 's') {
+                    System.out.print("Da duoc luu");
+                    String filename = "E:\\theFourSemester\\JavaInCLass\\file\\sudoku_save.txt";
+                    saveGameToFile(filename);
+                    continue;
+                }
+
+                row = Character.getNumericValue(choice);
+
                 if (row == -1) break;
 
-                System.out.print("Nhập cột (0-8): ");
+                System.out.print("Nhập cột (1-9): ");
                 column = scanner.nextInt();
 
-                if (row < 0 || row > 8 || column < 0 || column > 8) {
+                // Kiểm tra điều kiện của hàng và cột
+                if (row < 1 || row > 9 || column < 1 || column > 9) {
                     throw new IllegalArgumentException("Hàng hoặc cột không hợp lệ.");
                 }
+
+                row--;
+                column--;
 
                 if (game.getValue(row, column) != 0) {
                     throw new IllegalArgumentException("Ô đã có giá trị.");
@@ -63,7 +77,18 @@ public class SudokuView {
             scanner.close();
         }
     }
-
+    //
+    public void saveGameToFile(String filename) {
+        try {
+            game.saveGameToFile(filename);
+            System.out.println("Trò chơi đã được lưu vào tập tin " + filename);
+        } catch (IOException e) {
+            System.out.println("Đã xảy ra lỗi khi lưu trò chơi vào tập tin.");
+            e.printStackTrace();
+        }
+    }
+    
+    //
     private void displayAfterInput() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {

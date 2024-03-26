@@ -20,7 +20,7 @@ public class SudokuController {
             view.displayBoard();
             view.getInput();
 
-            // Validate the entire Sudoku board
+            // Validate toan bo Sudoku board
             if (gameIsComplete()) {
                 System.out.println("Chúc mừng, bạn đã hoàn thành Sudoku!");
                 return;
@@ -31,9 +31,11 @@ public class SudokuController {
     }
 
     private boolean gameIsComplete() {
-        if (!game.validate()) {
-            throw new IllegalArgumentException("Sudoku không hợp lệ. Vui lòng kiểm tra lại.");
-        }
+        //       
+            if (!game.validate()) {
+                System.out.println("Sudoku không hợp lệ. Vui lòng kiểm tra lại.");
+                return false;
+            }
         return true;
     }
 }

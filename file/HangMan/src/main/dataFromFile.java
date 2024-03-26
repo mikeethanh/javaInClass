@@ -17,7 +17,14 @@ public class dataFromFile {
         try {
            fr = new FileReader("E:\\theFourSemester\\javaInClass\\file\\hangmanStart.txt");
            br = new  BufferedReader(fr);
-            
+           String line;
+           while ((line = br.readLine()) != null) {
+               String[] parts = line.split(" ");
+               int level = Integer.parseInt(parts[1]);
+               String word = parts[3];
+               Game game = new Game(level, word);
+               games.add(game);
+           }
            
         } catch (IOException e) {
             e.printStackTrace();

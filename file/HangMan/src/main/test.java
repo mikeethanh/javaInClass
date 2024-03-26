@@ -9,7 +9,7 @@ public class test {
 		Game game = null;
 		int level = scanner.nextInt();
 		if(level == 1) {
-			game = new Game(1,"hangman");
+			game = new Game(1,"mikeethanh");
 			game.display();
 		}else if(level == 2) {
 			game = new Game(2," i love hangman");

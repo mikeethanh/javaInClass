@@ -11,7 +11,7 @@ public class example {
         try {
             fw = new FileWriter("E:/theFourSemester/JavaInCLass/file/bufferedWriter2.txt");
             bw = new BufferedWriter(fw);
-            bw.write("25_3_2024");
+            bw.write("26_3_2024");
             System.out.println("END!");
         } catch (IOException e) {
             e.printStackTrace();
